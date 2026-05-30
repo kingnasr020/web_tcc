@@ -89,38 +89,38 @@ export default function TeknisiPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-7xl mx-auto pb-10">
       {/* Page header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Manajemen Teknisi</h1>
-          <p className="text-slate-400 text-sm mt-0.5">
+          <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">Manajemen Teknisi</h1>
+          <p className="text-slate-500 text-sm mt-1">
             Kelola data dan status teknisi servis Anda.
           </p>
         </div>
 
         <button
           onClick={() => modal.open(null)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600
-            text-white text-sm font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all
-            shadow-lg shadow-cyan-500/20 active:scale-[0.98] self-start sm:self-auto"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600
+            text-white text-sm font-medium hover:bg-blue-700 transition-all
+            shadow-sm shadow-blue-200 active:scale-[0.98] self-start sm:self-auto"
         >
-          <Plus size={16} />
+          <Plus size={18} />
           Tambah Teknisi
         </button>
       </div>
 
       {/* Stats mini */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {[
-          { label: "Total Teknisi", value: stats.total, color: "text-white", bg: "bg-slate-800/60" },
-          { label: "Aktif", value: stats.aktif, color: "text-emerald-400", bg: "bg-emerald-500/5 border-emerald-500/20" },
-          { label: "Sibuk", value: stats.sibuk, color: "text-amber-400", bg: "bg-amber-500/5 border-amber-500/20" },
-          { label: "Nonaktif", value: stats.nonaktif, color: "text-slate-400", bg: "bg-slate-700/30" },
+          { label: "Total Teknisi", value: stats.total, color: "text-slate-800", bg: "bg-white border-slate-200 shadow-sm" },
+          { label: "Aktif", value: stats.aktif, color: "text-emerald-600", bg: "bg-emerald-50 border-emerald-100 shadow-sm" },
+          { label: "Sibuk", value: stats.sibuk, color: "text-amber-600", bg: "bg-amber-50 border-amber-100 shadow-sm" },
+          { label: "Nonaktif", value: stats.nonaktif, color: "text-slate-500", bg: "bg-slate-50 border-slate-100 shadow-sm" },
         ].map((s, i) => (
-          <div key={i} className={`${s.bg} border border-slate-800 rounded-xl px-4 py-3`}>
-            <p className="text-slate-500 text-xs mb-1">{s.label}</p>
-            <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
+          <div key={i} className={`${s.bg} border rounded-2xl px-5 py-4`}>
+            <p className="text-slate-500 text-xs font-medium mb-1 uppercase tracking-wider">{s.label}</p>
+            <p className={`text-3xl font-bold ${s.color}`}>{s.value}</p>
           </div>
         ))}
       </div>
@@ -129,29 +129,29 @@ export default function TeknisiPage() {
       <div className="flex flex-col sm:flex-row gap-3">
         {/* Search */}
         <div className="relative flex-1">
-          <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+          <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
             value={search}
             onChange={handleSearchChange}
             placeholder="Cari nama, email, atau spesialisasi..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm
-              placeholder-slate-500 outline-none focus:ring-2 focus:ring-cyan-500/40 focus:border-cyan-500/40 transition-all"
+            className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 text-sm
+              placeholder-slate-400 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all shadow-sm"
           />
         </div>
 
         {/* Status filter */}
-        <div className="flex items-center gap-2">
-          <Filter size={15} className="text-slate-500 flex-shrink-0" />
-          <div className="flex gap-1 flex-wrap">
+        <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-xl px-2 shadow-sm overflow-x-auto">
+          <Filter size={15} className="text-slate-400 flex-shrink-0 ml-2" />
+          <div className="flex gap-1 py-1.5 flex-nowrap">
             {STATUS_FILTERS.map((f) => (
               <button
                 key={f.value}
                 onClick={() => handleStatusChange(f.value)}
-                className={`px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
                   statusFilter === f.value
-                    ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30"
-                    : "text-slate-400 hover:bg-slate-800 hover:text-slate-200 border border-transparent"
+                    ? "bg-blue-50 text-blue-600 border border-blue-200"
+                    : "text-slate-500 hover:bg-slate-50 hover:text-slate-700 border border-transparent"
                 }`}
               >
                 {f.label}
@@ -163,21 +163,21 @@ export default function TeknisiPage() {
         {/* Refresh */}
         <button
           onClick={() => refetch()}
-          className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center
-            text-slate-400 hover:text-white hover:bg-slate-800 transition-all flex-shrink-0"
+          className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center
+            text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all flex-shrink-0 shadow-sm"
           title="Refresh data"
         >
-          <RefreshCw size={14} />
+          <RefreshCw size={16} />
         </button>
       </div>
 
       {/* Dummy data notice */}
       {useDummy && (
-        <div className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm">
-          <Users size={15} className="flex-shrink-0" />
+        <div className="flex items-center gap-3 px-5 py-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-700 text-sm shadow-sm">
+          <Users size={18} className="flex-shrink-0 text-amber-500" />
           <span>
             Menampilkan <strong>dummy data</strong> — endpoint{" "}
-            <code className="font-mono text-xs bg-amber-500/10 px-1.5 py-0.5 rounded">
+            <code className="font-mono text-xs bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">
               GET /api/admin/teknisi
             </code>{" "}
             belum aktif di backend.
