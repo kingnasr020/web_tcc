@@ -25,6 +25,15 @@ export default function OrderPage() {
     );
   }
 
+  // 1. Menghitung jumlah masing-masing status dengan aman (kebal huruf besar/kecil)
+  const stats = {
+    total: data.length,
+    pending: data.filter((item) => item.status?.toLowerCase() === 'pending').length,
+    diproses: data.filter((item) => item.status?.toLowerCase() === 'diproses').length,
+    selesai: data.filter((item) => item.status?.toLowerCase() === 'selesai').length,
+    dibatalkan: data.filter((item) => item.status?.toLowerCase() === 'dibatalkan').length,
+  };
+
   return (
     <div className="space-y-6">
       <div>
@@ -37,44 +46,24 @@ export default function OrderPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-white rounded-2xl p-5 border">
-          <p className="text-slate-500 text-sm">
-            Total Order
-          </p>
-
-          <h2 className="text-3xl font-bold">
-            {data.length}
-          </h2>
-        </div>
-
-        <div className="bg-white rounded-2xl p-5 border">
-          <p className="text-slate-500 text-sm">
-            Pending
-          </p>
-
-          <h2 className="text-3xl font-bold text-amber-500">
-            {
-              data.filter(
-                (o) => o.status === "pending"
-              ).length
-            }
-          </h2>
-        </div>
-
-        <div className="bg-white rounded-2xl p-5 border">
-          <p className="text-slate-500 text-sm">
-            Selesai
-          </p>
-
-          <h2 className="text-3xl font-bold text-emerald-500">
-            {
-              data.filter(
-                (o) => o.status === "selesai"
-              ).length
-            }
-          </h2>
-        </div>
+      {/* 2. Merender 5 Card Statistik menggunakan .map() */}
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+        {[
+          { label: "Total Order", value: stats.total, color: "text-slate-800" },
+          { label: "Pending", value: stats.pending, color: "text-amber-500" },
+          { label: "Diproses", value: stats.diproses, color: "text-blue-500" },
+          { label: "Selesai", value: stats.selesai, color: "text-emerald-500" },
+          { label: "Dibatalkan", value: stats.dibatalkan, color: "text-red-500" },
+        ].map((s, i) => (
+          <div key={i} className="bg-white rounded-2xl p-5 border shadow-sm">
+            <p className="text-slate-500 text-sm mb-1 font-medium">
+              {s.label}
+            </p>
+            <h2 className={`text-3xl font-bold ${s.color}`}>
+              {s.value}
+            </h2>
+          </div>
+        ))}
       </div>
 
       <OrderTable data={data} />

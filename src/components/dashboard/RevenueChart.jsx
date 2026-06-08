@@ -12,10 +12,18 @@ import axiosInstance from "../../api/axios";
 
 // DATA CADANGAN: Digunakan jika API error atau data kosong
 const defaultData = [
-  { name: "Jan", total: 0 }, { name: "Feb", total: 0 }, { name: "Mar", total: 0 },
-  { name: "Apr", total: 0 }, { name: "Mei", total: 0 }, { name: "Jun", total: 0 },
-  { name: "Jul", total: 0 }, { name: "Ags", total: 0 }, { name: "Sep", total: 0 },
-  { name: "Okt", total: 0 }, { name: "Nov", total: 0 }, { name: "Des", total: 0 }
+  { name: "Jan", total: 1500000 }, 
+  { name: "Feb", total: 3200000 }, 
+  { name: "Mar", total: 2800000 },
+  { name: "Apr", total: 5400000 }, 
+  { name: "Mei", total: 4100000 }, 
+  { name: "Jun", total: 7500000 },
+  { name: "Jul", total: 0 }, 
+  { name: "Ags", total: 0 }, 
+  { name: "Sep", total: 0 },
+  { name: "Okt", total: 0 }, 
+  { name: "Nov", total: 0 }, 
+  { name: "Des", total: 0 }
 ];
 
 const RevenueChart = () => {

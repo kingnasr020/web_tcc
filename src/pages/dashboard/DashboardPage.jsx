@@ -65,7 +65,7 @@ export default function DashboardPage() {
 
         <StatsCard
           title="Pelanggan Aktif"
-          value="-"
+          value={loading ? "..." : stats.totalCustomer}
           icon={Users}
           colorTheme="cyan"
         />
@@ -79,7 +79,7 @@ export default function DashboardPage() {
 
         <StatsCard
           title="Pendapatan"
-          value="-"
+          value={loading ? "..." : `Rp ${stats.totalRevenue}`}
           icon={Wallet}
           colorTheme="amber"
         />

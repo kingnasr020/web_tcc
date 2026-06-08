@@ -1,11 +1,14 @@
 import {
   ArrowUpRight,
+  ArrowDownRight,
+  Minus
 } from "lucide-react";
 
 const StatsCard = ({
   title,
   value,
   icon: Icon,
+  trend = 0, // Ini kuncinya! Default-nya 0 kalau tidak ada data yang dikirim
 }) => {
   return (
     <div
@@ -58,14 +61,27 @@ const StatsCard = ({
         </div>
       </div>
 
+      {/* Bagian Bawah yang Sudah Dibikin Dinamis */}
       <div className="flex items-center gap-2 mt-6">
-        <ArrowUpRight
-          size={18}
-          className="text-green-500"
-        />
+        {trend > 0 ? (
+          <ArrowUpRight size={18} className="text-green-500" />
+        ) : trend < 0 ? (
+          <ArrowDownRight size={18} className="text-red-500" />
+        ) : (
+          <Minus size={18} className="text-slate-400" />
+        )}
 
-        <span className="text-green-500 font-semibold">
-          +12%
+        <span
+          className={`font-semibold ${
+            trend > 0
+              ? "text-green-500"
+              : trend < 0
+              ? "text-red-500"
+              : "text-slate-400"
+          }`}
+        >
+          {trend > 0 ? "+" : ""}
+          {trend}%
         </span>
 
         <span className="text-slate-400">
